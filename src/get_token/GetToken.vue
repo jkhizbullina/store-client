@@ -1,22 +1,32 @@
 <template>
   <div class="main">
-    <h1>Russian-English dictionary</h1>
-    <h2>Русско-английский словарь</h2>
-    <p class = "description">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <h2>Онлайн-магазин</h2>
+    <div class="input"><label class="input-label" for="login">Ваш токен:</label><input class="w3-input" type="text" name="name" v-model="token" readonly></div>
     <div class = "links">
-      <p><a href="../add_word">Добавить слово</a></p>
-      <p><a href="../words_list/">Список слов</a></p>
+      <p><a href="../new_good?token={{ token }}">Добавить товар</a></p>
+      <p><a href="../goods?token={{ token }}">Список товаров</a></p>
     </div>
   </div>
 </template>
 
 <script>
+import io from "socket.io-client";
 export default {
   name: 'GetToken',
   created() {
-        document.title = "My dictionary"
+    document.title = "Get token";
+    this.socket = io("http://localhost:3000");
+    this.socket.emit("get_token", this.$route.token);
+  },
+  data() {
+    return {
+      token: "",
+    }
+  },
+  mounted() {
+    this.socket.on("token", newToken => {
+      this.token = newToken;
+    });
   }
 }
 </script>
