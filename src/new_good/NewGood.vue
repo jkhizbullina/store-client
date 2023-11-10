@@ -21,7 +21,7 @@
 <script>
 import io from "socket.io-client"; 
 export default {
-  name: 'AddWord',
+  name: 'NewGood',
   created() {
     document.title = "Add word";
     this.socket = io("http://localhost:3000");

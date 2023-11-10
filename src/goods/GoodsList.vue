@@ -15,7 +15,7 @@
 <script>
 import io from "socket.io-client";
 export default {
-  name: 'WordsList',
+  name: 'GoodsList',
   data() {
     return {
       words: []

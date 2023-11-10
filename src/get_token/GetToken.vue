@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'HomePage',
+  name: 'GetToken',
   created() {
         document.title = "My dictionary"
   }
